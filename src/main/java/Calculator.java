@@ -19,21 +19,23 @@ public class Calculator {
 
             System.out.println("Введите стоимость товара в формате 'рубли.копейки', например 10.15...");
             while (true) {
-                if (scanner.hasNextFloat())
-                { // хочется добавить ещё проверку на отрицательные числа, но не пойму, как правильно.
-                    // Если так: &&(scanner.nextFloat()>0) , то сканнер ждёт новое введение цены. Не круто.
-
+                if (scanner.hasNextFloat()) {
                     float price = scanner.nextFloat();
-                    sum += price;
-                    Good newGood = new Good(goodName, price);//создала новый обьект Товар
-                    goodsList.add(newGood);//добавила товар в список
-                    System.out.println("Товар успешно добавлен! Хотите добавить ещё товар? " +
-                            "Введите любой символ, чтобы продолжить, или 'завершить', чтобы закончить добавление товаров...");
-                    break;
-                }
-                else {
-                    System.out.println ("Введите корректную стоимость товара");
+                    if (price <= 0) {
+                        System.out.println("Введите корректную стоимость товара, больше 0");
+                    } else {
+                        sum += price;
+                        Good newGood = new Good(goodName, price);//создала новый обьект Товар
+                        goodsList.add(newGood);//добавила товар в список
+                        System.out.println("Товар успешно добавлен! Хотите добавить ещё товар? " +
+                                "Введите любой символ, чтобы продолжить, или 'завершить', чтобы закончить добавление товаров...");
+                        break;
+                    }
+                } else {
+                        System.out.println("Введите корректную стоимость товара цифрой");
                     scanner.next();
+
+
                 }
             } //конец бесконечного цикла на запрос цены
 
@@ -43,8 +45,12 @@ public class Calculator {
                 String whatToDo = scanner.next();
                 if (whatToDo.equalsIgnoreCase("Завершить")) {
                     System.out.println("Добавленные товары:");
+                    Rubles rubles = new Rubles();
+
+
                     for (Good good : goodsList) {
-                        System.out.println(good.name + " стоимостью " + good.price + "руб.");
+                        String rub=rubles.getRub(good.price);
+                        System.out.printf("%s стоимостью %.2f %s \n", good.name, good.price, rub); //вот тут изменить руб на динамическое окончание
                     }
 
                     result = sum / people;

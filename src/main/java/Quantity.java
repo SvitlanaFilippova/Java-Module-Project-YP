@@ -19,7 +19,7 @@ public class Quantity {
                 } else if (quantity < 1) {
                     System.out.println("Не ужинал вообще никто? Введите корректное значение более 1");
 
-                } else if (quantity > 1) {
+                } else {
                     System.out.println("Принято. Делим на " + quantity + ".");
                     return quantity;
                 }

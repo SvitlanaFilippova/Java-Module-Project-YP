@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Calculator {
     private static final Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
-    int people;
+
 
     public static float calculate(int people) {
         System.out.println("Ок, теперь добавим в счёт товары");
@@ -18,13 +18,24 @@ public class Calculator {
             String goodName = scanner.next();
 
             System.out.println("Введите стоимость товара в формате 'рубли.копейки', например 10.15...");
-            float price = scanner.nextFloat();
-             sum += price;
+            while (true) {
+                if (scanner.hasNextFloat()) { // хочется добавить ещё проверку на отрицательные числа, но не пойму, как правильно.
+                    // Если так: &&(scanner.nextFloat()>0) , то сканнер ждёт новое введение цены. Не круто.
+
+                    float price = scanner.nextFloat();
+                    sum += price;
                     Good newGood = new Good(goodName, price);//создала новый обьект Товар
                     goodsList.add(newGood);//добавила товар в список
-
                     System.out.println("Товар успешно добавлен! Хотите добавить ещё товар? " +
                             "Введите любой символ, чтобы продолжить, или 'завершить', чтобы закончить добавление товаров...");
+                    break;
+                }
+                else {
+                    System.out.println ("Введите корректную стоимость товара");
+                    scanner.next();
+                }
+            } //конец бесконечного цикла на запрос цены
+
 
 
 

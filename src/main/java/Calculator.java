@@ -11,7 +11,7 @@ public class Calculator {
 
         ArrayList<Good> goodsList = new ArrayList<>(); //создала список, где будем хранить все введённые товары
         float sum = 0;
-        float result = 0;
+        float result;
 
         while (true) {
             System.out.println("Введите название товара, чтобы добавить его...");

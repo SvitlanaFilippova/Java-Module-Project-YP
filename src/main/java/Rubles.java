@@ -1,26 +1,16 @@
 public class Rubles {
-    String rub;
-
 
     public String getRub(float result)  {
        int floResult=(int) Math.floor(result);
             int preLastDigit = floResult % 100 / 10;
-            if (preLastDigit == 1)
-            {
+            if (preLastDigit == 1) {
                 return "рублей";
             }
-
-            switch (floResult % 10)
-            {
-                case 1:
-                    return "рубль";
-                case 2:
-                case 3:
-                case 4:
-                    return "рубля";
-                default:
-                    return "рублей";
-            }
+        return switch (floResult % 10) {
+            case 1 -> "рубль";
+            case 2, 3, 4 -> "рубля";
+            default -> "рублей";
+        };
         }
 
 

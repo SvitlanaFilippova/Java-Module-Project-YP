@@ -16,23 +16,17 @@ public class Calculator {
         while (true) {
             System.out.println("Введите название товара, чтобы добавить его...");
             String goodName = scanner.next();
-            System.out.println("Введите стоимость товара в формате 'рубли.копейки', например 10.15...");
 
-            while (true) {
-              if (scanner.nextFloat() < 0) {
-                    System.out.println("Стоимость должна быть больше ноля.");
-                    scanner.next();
-                } else {
-                  float price = scanner.nextFloat();
-                  sum += price;
+            System.out.println("Введите стоимость товара в формате 'рубли.копейки', например 10.15...");
+            float price = scanner.nextFloat();
+             sum += price;
                     Good newGood = new Good(goodName, price);//создала новый обьект Товар
                     goodsList.add(newGood);//добавила товар в список
 
                     System.out.println("Товар успешно добавлен! Хотите добавить ещё товар? " +
                             "Введите любой символ, чтобы продолжить, или 'завершить', чтобы закончить добавление товаров...");
-                    break;
-                }
-            }
+
+
 
                 String whatToDo = scanner.next();
                 if (whatToDo.equalsIgnoreCase("Завершить")) {
